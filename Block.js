@@ -7,6 +7,7 @@ class Block{
      this.precedingHash = "0";
      this.hash = this.computeHash()
      this.nonce = 0
+     this.transactions = 'default';
     }
     computeHash(){
         return SHA256(this.index + this.precedingHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
@@ -21,6 +22,7 @@ class Block{
         this.precedingHash = block.precedingHash
         this.hash = block.hash
         this.nonce = block.nonce
+        this.transactions = block.transactions;
     }
 
     proofOfWork(difficulty = 1)

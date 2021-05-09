@@ -30,6 +30,17 @@ class Blockchain{
         newblock.proofOfWork(this.difficulty);
         this.chain.push(newblock);
         this.io.emit('blockmined', this.chain)//chanel blockmined, on lui renvoi toute la chaine
+
+        //ajout du gain dans la balance 
+        this.pendingTransactions = [
+            new Transaction(
+                newblock.sender,
+                newblock.receiver,
+                newblock.qty)
+        ];
+        this.balance += newblock.qty;
+
+        console.log(this.balance);
     }
 
     checkChainValidity()

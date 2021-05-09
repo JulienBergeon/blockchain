@@ -74,3 +74,7 @@ blockchain.addNewNode(socketListener(client(`http://localhost:${PORT}`), blockch
 http.listen(PORT, () => {
     console.log('listening on port', PORT)
 })
+
+app.get('/transactions', (req,res) => {
+    res.json(blockchain.pendingTransactions)
+})
